@@ -1,12 +1,9 @@
 .. |View Sturm on File Exchange| image:: https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg
-   :target: https://www.mathworks.com/matlabcentral/fileexchange/XXXX
+   :target: https://www.mathworks.com/matlabcentral/fileexchange/106290-sturm
 
 Sturm
 =====
-
-..
-  |View Sturm on File Exchange|
-..
+|View Sturm on File Exchange|
 
 ``Sturm`` is a MATLAB toolbox implementing two classes
 
@@ -244,4 +241,5 @@ Reference
 ---------
 
 - `en.wikipedia.org/wiki/Sturm%27s_theorem <https://en.wikipedia.org/wiki/Sturm%27s_theorem>`__
+- `en.wikipedia.org/wiki/Jacques_Charles_François_Sturm <https://en.wikipedia.org/wiki/Jacques_Charles_François_Sturm>`__
 - `lara.epfl.ch/w/_media/sar10/sturms_proof.pdf <https://lara.epfl.ch/w/_media/sar10/sturms_proof.pdf>`__
