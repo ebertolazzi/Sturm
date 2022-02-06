@@ -5,7 +5,6 @@
 %> **Reference**
 %>
 classdef Poly < handle
-  %% MATLAB class wrapper for the underlying C++ class
   properties (SetAccess = private, Hidden = true)
     m_order;
     m_coeffs;
@@ -82,13 +81,13 @@ classdef Poly < handle
     end
     % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     function purge( self, epsi )
-      IDX = find( abs(seld.m_coeffs) <= epsi );
+      IDX = find( abs(self.m_coeffs) <= epsi );
       self.m_coeffs(IDX) = 0;
     end
     % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     function S = normalize( self )
       S = max(max(abs(self.m_coeffs)));
-      if S > 0; self.m_coeffs = self.m_coeffs./S; end;
+      if S > 0; self.m_coeffs = self.m_coeffs./S; end
     end
     % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     res = plus(self,b)
