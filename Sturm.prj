@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.toolbox" plugin-version="1.0">
-  <configuration build-checksum="3315004081" file="/Users/enrico/Ricerca/Software/REPOS/myReposGit/Sturm/Sturm.prj" location="/Users/enrico/Ricerca/Software/REPOS/myReposGit/Sturm" name="Sturm" target="target.toolbox" target-name="Package Toolbox">
+  <configuration build-checksum="1166283170" file="/Users/enrico/Ricerca/Software/REPOS/myReposGit/Sturm/Sturm.prj" location="/Users/enrico/Ricerca/Software/REPOS/myReposGit/Sturm" name="Sturm" target="target.toolbox" target-name="Package Toolbox">
     <param.appname>Sturm</param.appname>
     <param.authnamewatermark>Enrico Bertolazzi</param.authnamewatermark>
     <param.email>enrico.bertolazzi@unitn.it</param.email>
