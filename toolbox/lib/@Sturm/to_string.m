@@ -1,4 +1,4 @@
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% Write the Sturm sequence and interval of separation in human readable way
 function out = to_string( self )
   out = sprintf('Sturm sequence\n');
   for i=1:length(self.m_sturm)

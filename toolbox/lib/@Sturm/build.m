@@ -1,10 +1,10 @@
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% Given a polynimial P(x) build its Sturm sequence
+%
 function build( self, P )
   self.m_intervals = {};
   self.m_sturm     = {};
-  DP = P.derivative();
-  self.m_sturm{1} = P;
-  self.m_sturm{2} = DP;
+  self.m_sturm{1}  = P;
+  self.m_sturm{2}  = P.derivative();
   ns = 2;
   % apply Euclide GCD algorithm
   while true

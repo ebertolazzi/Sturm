@@ -1,4 +1,4 @@
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% Given a Sturm sequence with roots separated approximate roots using Newton method.
 function n_roots = refine_roots( self, tol )
   P  = self.m_sturm{1};
   NR = length(self.m_intervals);
@@ -11,7 +11,7 @@ function n_roots = refine_roots( self, tol )
     fa = P.eval( a );
     fb = P.eval( b );
     % controlla consistenza dati del problema
-    if fa * fb > 0
+    if fa * fb >= 0
       error('refine_roots something wrong in roots separations\n');
     end
     n_ok = 0;

@@ -1,9 +1,19 @@
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% Given a Sturm sequence separate the real roots in the interval [a,b]
 function n_roots = separate_roots( self, a, b )
   self.m_a = a;
   self.m_b = b;
-  va      = self.sign_variations(a);
-  vb      = self.sign_variations(b);
+  [va,m_root_a] = self.sign_variations(a);
+  [vb,m_root_b] = self.sign_variations(b);
+  while m_root_a
+    % on root, move interval a
+    a = a - 1e-8*(b-a);
+    [va,m_root_a] = self.sign_variations(a);
+  end
+  while m_root_b
+    % on root, move interval a
+    b = b + 1e-8*(b-a);
+    [vb,m_root_b] = self.sign_variations(b);
+  end
   n_roots = abs( va - vb );
 
   if n_roots == 0; return; end
@@ -22,8 +32,25 @@ function n_roots = separate_roots( self, a, b )
   while i_pos <= n_roots
     I0 = self.m_intervals{i_pos};
     % refine segment
-    c  = (I0.a+I0.b)/2;
-    vc = self.sign_variations(c);
+    c = (I0.a+I0.b)/2;
+    [vc,vroot] = self.sign_variations(c);
+    if vroot
+      for iter=2:10
+        c = (I0.a*iter+I0.b)/(1+iter);
+        [vc,vroot] = self.sign_variations(c);
+        if ~vroot; break; end
+      end
+    end
+    if vroot
+      for iter=2:10
+        c = (I0.a+I0.b*iter)/(1+iter);
+        [vc,vroot] = self.sign_variations(c);
+        if ~vroot; break; end
+      end
+    end
+    if vroot
+      error('separate_roots failed\n');
+    end
     if I0.va == vc % LO <- c
       I0.a  = c;
       I0.va = vc;

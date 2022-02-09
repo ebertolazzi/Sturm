@@ -1,4 +1,4 @@
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% Multiply two polynomial
 function res = mtimes(self,b)
   ok1 = isequal(class(self),'Poly');
   ok2 = isequal(class(b),'Poly');
