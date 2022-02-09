@@ -1,4 +1,8 @@
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% Subtract two polynomial
+%
+% Given p(x) = 1+x, q(x) = 2-x-x^2
+% res = p(x) - q(x) = -1 + 2*x + x^2
+%
 function res = minus(self,b)
   ok1 = isequal(class(self),'Poly');
   ok2 = isequal(class(b),'Poly');

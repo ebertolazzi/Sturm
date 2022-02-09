@@ -1,0 +1,619 @@
+\documentclass[twoside,10pt]{article}
+
+\makeatletter
+\def\input@path{{:macros:}{macros/}{:chapters:}{chapters/}}
+\makeatother
+
+\usepackage[a4paper]{geometry}
+\usepackage{color,times,bbm}
+\usepackage[italian]{babel}
+
+\usepackage[math]{easyeqn}
+\usepackage[definevectors,spacesep]{easyvector}
+%:
+
+\definecolor{headercolor}{rgb}{0.07,0.41,0.28}
+\definecolor{sectioncolor}{rgb}{0.25,0.1,0.5}
+\definecolor{subsectioncolor}{rgb}{0.25,0.25,0.75}
+\definecolor{bodycolor}{rgb}{0,0,0}
+
+\usepackage[thmmarks]{ntheorem}
+\theoremnumbering{arabic}
+\theoremstyle{plain}
+%begin{latexonly}
+\theoremheaderfont{\normalfont\sffamily\bfseries\color{headercolor}}
+\theoremseparator{.}
+%end{latexonly}
+\newtheorem{proposizione}{Proposizione}
+\newtheorem{teorema}{Teorema}
+\newtheorem{lemma}[teorema]{Lemma}
+\newtheorem{corollario}[teorema]{Corollario}
+%
+%begin{latexonly}
+\theorembodyfont{\normalfont\sffamily\color{bodycolor}}
+\theoremheaderfont{\normalfont\sffamily\bfseries\color{headercolor}}
+\theoremseparator{.}
+%end{latexonly}
+\newtheorem{definizione}{Definizione}
+\newtheorem{osservazione}{Osservazione}
+\newtheorem{esempio}{Esempio}
+\newtheorem{problema}{Problema}
+\newtheorem{applicazione}{Applicazione}
+\newtheorem{esercizio}{Esercizio}
+% 
+\theoremstyle{nonumberplain}
+%begin{latexonly}
+\theoremsymbol{\ensuremath{\rule{2mm}{2mm}}}
+\theorembodyfont{\small\normalfont\sffamily}
+\theoremheaderfont{\normalfont\sffamily\bfseries}
+\theoremseparator{.}
+\theorembodyfont{\normalfont\sffamily\color{bodycolor}}
+\theoremheaderfont{\normalfont\sffamily\bfseries\color{headercolor}}
+%end{latexonly}
+\newtheorem{dimostrazione}{Dimostrazione}
+\newtheorem{soluzione}{Risoluzione}
+
+\DeclareMathAlphabet\mathcal{U}{eus}{m}{n}
+\DeclareMathAlphabet\mathbcal{U}{eus}{b}{n}
+
+\let\bbb\mathbbm
+\let\Cal\mathcal
+\let\BCal\mathbcal
+
+\let\ds\displaystyle
+\let\IMP\Rightarrow
+\let\IMPD\Downarrow
+\let\SSE\Longleftrightarrow
+
+%begin{latexonly}
+\usepackage{sectsty}
+\sectionfont{\nohang\normalfont\Large\sffamily\bfseries\color{sectioncolor}}
+\subsectionfont{\nohang\normalfont\large\sffamily\bfseries\color{subsectioncolor}}
+%end{latexonly}
+
+\usepackage{appunti}
+
+\renewcommand{\baselinestretch}{1.2}
+\parindent0pt\relax
+\parskip0.4\baselineskip plus 2pt\relax
+
+\title{Zeri di funzioni e teorema di Sturm}
+\author{Enrico Bertolazzi}
+\date{\normalfont\itshape
+     Dipartimento di Ingegneria Meccanica e Strutturale\\
+     Universit\`a degli Studi di Trento\\
+     via Mesiano 77, I -- 38050 Trento, Italia\\
+     \texttt{Enrico.Bertolazzi@ing.unitn.it}
+}
+
+\begin{document}
+    
+\pagestyle{myfancy}
+\def\chaptermark#1{\markboth{#1}{}}
+\def\sectionmark#1{\markright{#1}}
+
+\maketitle
+
+%\section{Zeri di polinomi}
+
+\section{Eliminazione delle radici multiple}
+Il metodo di Newton-Raphson \`e un metodo generalmente del secondo
+ordine, ma se vogliamo approssimare una radice multipla di un
+polinomio la convergenza degrada al primo ordine.  Un modo per evitare
+questo degrado delle prestazioni \`e quello di sostituire al polinomio
+che contiene radici multiple un polinomio con le stesse radici ma
+semplici.  Questo problema apparentemente complicato ha una soluzione
+molto semplice:
+Sia $p(\xx[])$ un polinomio monico fattorizzato come segue%
+\footnote{nella formula $\PROD[i]{j=1}{k}$ significa che vengono fatti 
+tutti i prodotti con indice $j$ che va da $1$ a $k$ escluso $i$}
+%%
+\begin{EQ}
+     p(\xx[]) = \prod_{i=1}^{k}(\xx[]-\xx[i])^{\mm[i]},
+\end{EQ}
+%%
+allora il polinomio derivata prima si scriver\`a come
+%%
+\begin{EQ}[rcl]
+    p'(\xx[]) &=& q(\xx[])\prod_{i=1}^{k}(\xx[]-\xx[i])^{\mm[i]-1}, \\
+    q(\xx[])  &=& \sum_{i=1}^{k} \mm[i] \PROD[i]{j=1}{k}(\xx[]-\xx[i]),
+\end{EQ}
+%%
+osserviamo che il polinomio $q(\xx[])$ non ha radici in comune con il 
+polinomio $p(\xx[])$ infatti
+%%
+\begin{EQ}
+   q(\xx[\ell]) = \sum_{i=1}^{k} \mm[i] \PROD[i]{j=1}{k}(\xx[\ell]-\xx[i])
+   = \mm[\ell] \PROD[\ell]{j=1}{k}(\xx[\ell]-\xx[i]) \neq 0, \qquad
+   \ell = 1,2,\ldots,k
+\end{EQ}
+%%
+Quindi il polinomio $p(\xx[])$ e $p'(\xx[])$ hanno in comune solo le
+radici di $p(\xx[])$ con molteplicit\`a maggiore di $1$.  Se $\xx[i]$
+\`e una radice comune con molteplicit\`a $\mm[i]$ allora la sua
+molteplicit\`a in $p'(\xx[])$ sar\`a $\mm[i]-1$.
+
+Ricordiamo che un polinomio $M(\xx[])$ \`e il massimo comun divisore
+tra due polinomi $P(\xx[])$ e $Q(\xx[])$ se vale
+%%
+\begin{enumerate}
+    \item $M(\xx[])$ divide $P(\xx[])$ e $Q(\xx[])$, cio\`e
+    %%
+    \begin{EQ}\label{eq:newton:020}
+        P(\xx[]) = M(\xx[]) S(\xx[]), \qquad
+        Q(\xx[]) = M(\xx[]) T(\xx[]),
+    \end{EQ}
+    %%
+    dove $S(\xx[])$ e $T(\xx[])$ sono a loro volta polinomi (anche 
+    di grado $0$)
+    
+    \item Se $N(\xx[])$ \`e un altro polinomio che divide $P(\xx[])$ e
+    $Q(\xx[])$ allora $N(\xx[])$ divide $M(\xx[])$ cio\`e
+    %%
+    \begin{EQ}
+        M(\xx[]) = W(\xx[]) N(\xx[]),
+    \end{EQ}
+    %%
+    per $W(\xx[])$ opportuno polinomio.
+\end{enumerate}
+
+\begin{teorema}
+    Se $M(\xx[])$ \`e il massimo comun divisore tra due polinomi
+    $P(\xx[])$ e $Q(\xx[])$ e se $\alpha$ \`e una radice comune a
+    $P(\xx[])$ e $Q(\xx[])$ cio\`e:
+    %%
+    \begin{EQ}
+        P(\alpha)= 0, \qquad Q(\alpha) =0,
+    \end{EQ}
+    %%
+    allora necessariamente $\alpha$ \`e anche una radice di $M(\xx[])$.
+\end{teorema}
+\begin{dimostrazione}
+    Se cos{\`\i} non fosse dalla \eqref{eq:newton:020} avremo che il
+    polinomio $\xx-\alpha$ divide sia $S(\xx[])$ che $T(\xx[])$ cio\`e
+    %%
+    \begin{EQ}
+        P(\xx[]) = M(\xx[]) (\xx-\alpha) S^{1}(\xx[]), \qquad
+        Q(\xx[]) = M(\xx[]) (\xx-\alpha) T^{1}(\xx[]),
+    \end{EQ}
+    %%
+    e $M(\xx[]) (\xx-\alpha)$ sarebbe un divisore comune a $S(\xx[])$
+    e $T(\xx[])$ che non divide $M(\xx[])$.
+\end{dimostrazione}
+
+\begin{teorema}
+    Se $\alpha$ \`e una radice di $M(\xx[])$ massimo comun divisore
+    tra i polinomi $P(\xx[])$ e $Q(\xx[])$ allora $\alpha$ \`e una
+    radice comune a $P(\xx[])$ e $Q(\xx[])$ cio\`e:
+    %%
+    \begin{EQ}
+        P(\alpha)= 0, \qquad Q(\alpha) =0,
+    \end{EQ}
+    %%
+\end{teorema}
+\begin{dimostrazione}
+    dalla \eqref{eq:newton:020} segue immediatamente
+    %%
+    \begin{EQ}[rcl]
+        P(\alpha) &=& M(\alpha) S(\alpha) = 0, \\
+        Q(\alpha) &=& M(\alpha) T(\alpha) = 0,
+    \end{EQ}
+    %%
+\end{dimostrazione}
+%%
+Conseguenza di questi due teoremi \`e che il massimo comun divisore
+tra due polinomi \`e costituito dal prodotto delle radici in comune
+con molteplicit\`a il minimo tra le due.
+%%
+\begin{esempio}
+    Siano
+    %%
+    \begin{EQ}[rcl]
+        P(\xx[]) &=& 3(\xx[]-1)^{3}(\xx[]+1)^{2}(\xx[]-3), \\
+        Q(\xx[]) &=& 2(\xx[]-1)^{2}(\xx[]+1)(\xx[]-3)^{3},
+    \end{EQ}
+    %%
+    il loro massimo comun divisore \`e
+    %%
+    \begin{EQ}
+        M(\xx[]) = (\xx[]-1)^{2}(\xx[]+1)(\xx[]-3).
+    \end{EQ}
+\end{esempio}
+
+Sia $m(\xx[])$ il massimo comun divisore tra i polinomi $p(\xx[])$ e
+$p'(\xx[])$ allora per i discorsi precedenti vale
+%%
+\begin{EQ}
+     m(\xx[]) = \prod_{i=1}^{k}(\xx[]-\xx[i])^{\mm[i]-1}.
+\end{EQ}
+%%
+Allora il polinomio
+%%
+\begin{EQ}
+    \dfrac{p(\xx[])}{m(\xx[])} = \prod_{i=1}^{k}(\xx[]-\xx[i]),
+\end{EQ}
+%%
+conterr\`a tutte le radici di $p(\xx[])$ e solo radici semplici.  Il
+problema \`e come trovare questo massimo comun divisore.  Per fare
+questo ci viene in aiuto un algoritmo classico, l'algoritmo di Euclide
+(Euclide di Alessandria circa 365--300 a.C.) per il calcolo del
+massimo comun divisore.
+%%
+\begin{algorithm}{Algoritmo di Euclide per il M.C.D. di $p(x)$ e $q(x)$}
+{\label{algo:euclide}\qinput{$p(x)$, $q(x)$}}
+  \qif {$\partial p>\partial q$} \\
+  \qthen $p_{0}\qlet p$; $p_{1}\qlet q$ \\
+  \qelse $p_{0}\qlet q$; $p_{1}\qlet p$
+  \qfi \\
+  $i \qlet 1$ \\
+  \qrepeat \\
+    \qcom{$p_{i+1}$ \`e il resto della divisione di $p_{i-1}$ con $p_{i}$.} \\
+    \qcom{$p_{i-1}(x) = s_{i}(x) p_{i}(x) + p_{i+1}(x)$} \\
+    $i \qlet i+1$
+  \quntil {$p_{i}\equiv 0$} \\
+  \qcom{$p_{i-1}$ \`e il massimo comun divisore.}
+\end{algorithm}
+
+\begin{esempio}
+    Sia dato
+    %%
+    \begin{EQ}[rcl]
+        p(x)  &=& (x-1)^{3}(x-2)(x+1)^{2}, \\
+              &=&  x^{6} - 3 x^{5} + 6 x^{3} - 3 x^{2} - 3x+2, \\
+        p'(x) &=&  6 x^{5} - 15 x^{4} + 18 x^{2} - 6 x  - 3,
+    \end{EQ}
+    %%
+    calcoliamo il massimo comun divisore $m(x)$ con l'algoritmo di
+    Euclide:
+    \begin{enumerate}
+        \item Inizializzazione:
+        \begin{EQ}[rcl]
+            p_{0}(x) &=& x^{6} - 3 x^{5} + 6 x^{3} - 3 x^{2} - 3x+2, \\
+            p_{1}(x) &=& 6 x^{5} - 15 x^{4} + 18 x^{2} - 6 x  - 3,
+        \end{EQ}
+        \item Calcolo $p_{2}$:
+        \begin{EQ}[rcl]
+            p_{0}(x) &=& p_{1}(x) s_{1}(x) + p_{2}(x),\\
+            x^{6} - 3 x^{5} + 6 x^{3} - 3 x^{2} - 3x+2 &=&
+            \left(6 x^{5} - 15 x^{4} + 18 x^{2} - 6 x  - 3\right)
+            \left(\dfrac{x}{6}-\dfrac{1}{12}\right)
+            \\ && 
+            + \left(
+            \dfrac{7}{4} -  3x - \dfrac{x^{2}}{2} + 3 x^{3}
+            - \dfrac{5}{4} x^{4}
+            \right).
+        \end{EQ}
+        \item Calcolo $p_{3}$:
+        \begin{EQ}[rcl]
+            p_{1}(x) &=& p_{2}(x) s_{1}(x) + p_{3}(x), \\
+            6 x^{5} - 15 x^{4} + 18 x^{2} - 6 x  - 3 &=&
+            \left(-\dfrac{24 x}{5}+\dfrac{12}{25}\right)
+            \left(
+            \dfrac{7}{4} -  3x - \dfrac{x^{2}}{2} + 3 x^{3}
+            - \dfrac{5}{4} x^{4}
+            \right) \\
+            && + \dfrac{96}{25}\left( -x^{3} + x^{2} + x -1 \right).
+        \end{EQ}
+        \item Calcolo $p_{4}$:
+        \begin{EQ}[rcl]
+            p_{2}(x) &=& p_{3}(x) s_{1}(x) + p_{4}(x), \\
+            6 x^{5} - 15 x^{4} + 18 x^{2} - 6 x  - 3 &=&
+            \left(\dfrac{125 x}{384}-\dfrac{175}{384}\right)
+            \dfrac{96}{25}\left( -x^{3} + x^{2} + x -1 \right) + 0.
+        \end{EQ}
+        \item Poich\'e $p_{4}\equiv 0$ il massimo comun divisore \`e $p_{3}$
+        \begin{EQ}
+            \dfrac{96}{25}\left( -x^{3} + x^{2} + x -1 \right),
+        \end{EQ}
+        e poich\'e \`e unico a meno di una costante moltiplicativa
+        scegliamo
+        \begin{EQ}
+            m(x) =-x^{3} + x^{2} + x -1.
+        \end{EQ}
+    \end{enumerate}
+    %%
+    dividendo $p(x)$ per $m(x)$ otteniamo
+    %%
+    \begin{EQ}
+        \dfrac{p(x)}{m(x)} = -\dfrac{x^{3}}{2} + x^{2} + \dfrac{x}{2} -1.
+    \end{EQ}
+    %%
+\end{esempio}
+%%
+Per questioni computazionali (ad esempio nella costruzione di
+successioni di Sturm) a volte \`e pi\`u conveniente usare una versione
+modificata dell'algoritmo tenendo cento del fatto che se $m(x)$ \`e il
+massimo comun divisore tra due polinomi anche $c m(x)$ lo \`e dove $c$
+\`e un qualunque scalare non nullo.  La versione \`e la seguente
+%%
+\begin{algorithm}{Algoritmo di Euclide per il M.C.D. di $p(x)$ e
+$q(x)$ (versione modificata)}{ \qinput{$p(x)$, $q(x)$} } \qif
+{$\partial p>\partial q$} \\
+  \qthen $p_{0} \qlet p$; $p_{1} \qlet q$ \\
+  \qelse $p_{0} \qlet q$; $p_{1} \qlet p$
+  \qfi \\
+  $i \qlet 1$ \\
+  \qrepeat \\
+     \qcom{ $p_{i+1}$ \`e il resto della divisione di $p_{i-1}$ 
+            con $p_{i}$.}\\
+     \qcom{ $p_{i-1}(x) = s_{i}(x) p_{i}(x) - c_{i} p_{i+1}(x)$}\\
+    $i \qlet i+1$
+  \quntil {$p_{i}\equiv 0$} \\
+  \qcom{ $p_{i-1}$ \`e il massimo comun divisore}
+\end{algorithm}
+%%
+Osserviamo che l'algoritmo~\ref{algo:euclide} produce effettivamente
+il massimo comun divisore.  Vale infatti il seguente teorema:
+%%
+\begin{teorema}
+    L'algoritmo~\ref{algo:euclide} termina in un numero finito $m$ di
+    passi e l'ultimo resto non nullo \`e il massimo comun divisore dei
+    polinomi.
+\end{teorema}
+\begin{dimostrazione}
+    Innanzitutto osserviamo che l'algoritmo termina in un numero
+    finito di passi.  Infatti il resto della divisione ha grado
+    strettamente minore del divisore e quindi ad ogni divisione si
+    riduce il grado dei polinomi coinvolti.  Quando il grado \`e $0$
+    il polinomio \`e uno scalare.  La divisione di un polinomio per
+    uno scalare ha resto nullo e quindi anche in questo caso estremo
+    l' algoritmo termina.  L'algoritmo pu\`o essere quindi scritto
+    come segue
+    %%
+    \begin{EQA}[rcl]
+        \pp[0](x) &=& \ss[1](x)\pp[1](x) - c_{1}\pp[2](x),
+        \label(~.0){eq:newton:eu:a} \\
+        \pp[1](x) &=& \ss[2](x)\pp[2](x) - c_{2}\pp[3](x) ,
+        \label(~.1){eq:newton:eu:b}\\
+        &\vdots & \\
+        \pp[k-1](x) &=& \ss[k](x)\pp[k](x) - c_{k}\pp[k+1](x),
+        \label(~.k){eq:newton:eu:k} \\
+        &\vdots&  \\
+        \pp[m-2](x) &=& \ss[m-1](x)\pp[m-1](x) - c_{m-1}\pp[m](x) ,
+        \label(~.m-1){eq:newton:eu:mu}\\
+        \pp[m-1](x) &=& \ss[m](x)\pp[m](x), \label(~.m){eq:newton:eu:m}
+    \end{EQA}
+    %%
+    e segue subito che $\pp[m](x)$ l'ultimo resto non nullo divide
+    $\pp[m-1](x)$, $\pp[m-2](x)$,\ldots, $\pp[0](x)$ e quindi \`e un
+    divisore comune.  Viceversa sia $q(x)$ un divisore di $\pp[0](x)$
+    e $\pp[1](x)$, allora dalla \eqref{eq:newton:eu:a} segue se $q(x)$
+    divide $\pp[2](x)$ e dalla \eqref{eq:newton:eu:b} segue che $q(x)$
+    divide $\pp[3](x)$ e cos\`{\i} via fino ad arrivare alla
+    \eqref{eq:newton:eu:m} da cui segue che $q(x)$ divide $\pp[m](x)$
+    e quindi $\pp[m](x)$ \`e il massimo comun divisore.
+\end{dimostrazione}
+
+
+\subsection{Separazione delle radici}
+E` desiderabile avere il modo per conoscere il numero di \emph{radici
+reali} in un dato intervallo.  Se questo \`e possibile \`e possibile
+tramite un metodo di bisezione separare tutte le radici reali e
+approssimarle fino alla approssimazione voluta.  Questo problema pu\`o
+essere risolto grazie alle successioni che prendono il nome dal suo
+scopritore Jacques Charles Francois Sturm 1803--1855:
+%%
+\begin{definizione}\label{def:sturm}\index{Sturm!successione di}
+    La successione di funzioni continue definite su $[a,b]$:
+    %%
+    \begin{EQ}
+        \Cal{F}(x) = \{ \ff[0](x), \ff[1](x),\ldots,\ff[m](x) \},
+    \end{EQ}
+    %%
+    forma una \emph{successione di Sturm su $[a,b]$} se  vale:
+    %%
+    \begin{enumerate}
+        \item $\ff[0](x)$ ha al pi\`u zero semplici in $[a,b]$;
+        \item $\ff[m](x)$ non ha zeri su $[a,b]$;
+        \item per ogni $\alpha\in[a,b]$ tale che $\ff[k](\alpha)=0$, allora
+        $\ff[k-1](\alpha)\ff[k+1](\alpha)<0$;
+        \item per ogni $\alpha\in[a,b]$ tale che $\ff[0](\alpha)=0$, allora
+        $\ff[0]'(\alpha)\ff[1](\alpha) < 0$;
+    \end{enumerate}
+\end{definizione}
+
+\begin{definizione}
+    Data una successione di Sturm $\Cal{F}(x)
+    =\{\ff[0](x),\ff[1](x),\ldots,\ff[m](x)\}$ per ogni punti $x$
+    associamo un vettore di $m+1$ numeri reali.  A questo vettore
+    possiamo associare un numero intero detto variazione di segno. 
+    Questo numero rappresenta il numero di volte che scorrendo la
+    successione di numeri c'\`e un cambio di segno.  Ad esempio la
+    successione
+    %%
+    \begin{EQ}
+        \{ \underbrace{1, 0, -2}_{*}, \underbrace{-3, 4}_{*}, 3, 0, 1 \},
+    \end{EQ}
+    %%
+    ha $2$ variazioni di segno (marcate con $*$). Osserviamo che $3,0,1$ 
+    ha variazione di segno nulla. Infatti lo $0$ va considerato come 
+    elemento neutro e va rimosso dal computo.
+\end{definizione}
+%%
+Per ogni successione di Sturm vale il seguente teorema:
+%%
+\begin{teorema}[Sturm]\index{Sturm!teorema di}
+    Data una successione di Sturm $\Cal{F}(x)
+    =\{\ff[0](x),\ff[1](x),\ldots,\ff[m](x)\}$ su $[a,b]$ il numero di
+    zeri di $\ff[0](x)$ in $(a,b)$ \`e dato dalla differenza tra il
+    numero di variazioni di segno in $\Cal{F}(b)$ e $\Cal{F}(a)$.
+\end{teorema}
+\begin{dimostrazione}
+    Il numero di variazioni di segno cambia man mano che $x$ passa da
+    $a$ a $b$ solo a causa del cambio di segno di qualche funzione
+    della successione di Sturm.  Assumiamo che per un qualche
+    $\hat{x}\in(a,b)$ valga $\ff[k](\hat{x})=0$ per $0<k<m$.  In un
+    intorno di $\hat{x}$ dalla condizione $3$ sar\`a
+    %%
+    \begin{center}
+        \begin{tabular}{c|ccc}
+            $x$ & $\ff[k-1](x)$ & $\ff[k](x)$ & $\ff[k+1](x)$ \\
+            \hline
+            $\hat{x}+\epsilon$ & $+$ & $\pm$ & $-$ \\
+            $\hat{x}         $ & $+$ & $0$   & $-$ \\
+            $\hat{x}-\epsilon$ & $+$ & $\pm$ & $-$ \\
+            \hline
+        \end{tabular}
+        \qquad oppure \qquad 
+        \begin{tabular}{c|ccc}
+            $x$ & $\ff[k-1](x)$ & $\ff[k](x)$ & $\ff[k+1](x)$ \\
+            \hline
+            $\hat{x}+\epsilon$ & $-$ & $\pm$ & $+$ \\
+            $\hat{x}         $ & $-$ & $0$   & $+$ \\
+            $\hat{x}-\epsilon$ & $-$ & $\pm$ & $+$ \\
+            \hline
+        \end{tabular}
+    \end{center}
+    %%
+    in ogni caso il passaggio da $\hat{x}$ non cambia il numero di
+    variazioni di segno.  Sia ora $\hat{x}$ uno zero di $\ff[0](x)$ e
+    vediamo la variazione di segno nell'intorno di $\hat{x}$,
+    osserviamo che dalla condizione $4$ della
+    definizione~\ref{def:sturm} avremo
+    %%
+    \begin{center}
+        \begin{tabular}{c|cc}
+            $x$ & $\ff[0](x)$ & $\ff[1](x)$ \\
+            \hline
+            $\hat{x}+\epsilon$ & $+$ & $+$\\
+            $\hat{x}         $ & $0$ & $+$\\
+            $\hat{x}-\epsilon$ & $-$ & $+$\\
+            \hline
+        \end{tabular}
+        \qquad oppure \qquad 
+        \begin{tabular}{c|cc}
+            $x$ & $\ff[0](x)$ & $\ff[1](x)$ \\
+            \hline
+            $\hat{x}+\epsilon$ & $-$ & $-$ \\
+            $\hat{x}         $ & $0$ & $-$ \\
+            $\hat{x}-\epsilon$ & $+$ & $-$ \\
+            \hline
+        \end{tabular}
+    \end{center}
+    %%
+    in ogni caso in numero delle variazioni di segno cresce al passare
+    di $x$ per uno zero di $\ff[0](x)$.  Combinando queste
+    osservazioni otteniamo il teorema.
+\end{dimostrazione}
+
+
+\subsubsection{Costruzione della successione di Sturm per un polinomio}
+E` relativamente facile costruire una successione di Sturm per un
+polinomio.  Sia $\ff[0]\equiv\pp[n]$ un polinomio di grado $n$,
+definiamo $\ff[1]\equiv -\pp[n]'$.  Dividiamo $\ff[0](x)$ per
+$\ff[1](x)$ e chiamiamo il resto $-\ff[2](x)$.  Poi dividiamo
+$\ff[1](x)$ per $\ff[2](x)$ e chiamiamo il resto $-\ff[3](x)$. 
+Continuiamo cos\`\i\ finch\'e il procedimento termina.  Abbiamo
+cos\`\i\ la successione:
+%%
+\begin{EQ}[rcl]\label{eq:newton:021}
+   \ff[0](x) &=& \qq[1](x)\ff[1](x) - \ff[2](x),\\
+   \ff[1](x) &=& \qq[2](x)\ff[2](x) - \ff[3](x), \\
+             &\vdots & \\
+   \ff[k-1](x) &=& \qq[k](x)\ff[k](x) - \ff[k+1](x), \\
+             &\vdots&  \\
+   \ff[m-2](x) &=& \qq[m-1](x)\ff[m-1](x) - \ff[m](x), \\
+   \ff[m-1](x) &=& \qq[m](x)\ff[m](x).
+\end{EQ}
+%%
+Questa successione a parte il segno di $\ff[i]$ \`e esattamente la
+successione per il calcolo del massimo comun divisore di un polinomio,
+e $\ff[m]$ \`e il massimo comun divisore tra $\ff[0]$ e $\ff[1]$.  La
+successione di polinomi
+%%
+\begin{EQ}
+     \pp[i](x) = \dfrac{\ff[i](x)}{\ff[m](x)}, \qquad i=0,1,\ldots,m
+\end{EQ} 
+%%
+\`e una successione di Sturm, infatti
+%%
+\begin{enumerate}
+   \item $\pp[0](x)$ ha al pi\`u zero semplici in $[a,b]$;
+         essendo il rapporto tra il polinomio originario ed il massimo 
+         comun divisore tra il polinomio originario e la sua derivata 
+         prima.
+   \item $\pp[m](x)$ non ha zeri su $[a,b]$; infatti \`e una costante.
+   \item per ogni $\alpha\in[a,b]$ tale che $\pp[k](\alpha)=0$, allora
+         $\pp[k-1](\alpha)\pp[k+1](\alpha)<0$; infatti dalla \eqref{eq:newton:021}
+         abbiamo
+         \begin{EQ}
+             \pp[k-1](\alpha) = -\pp[k+1](\alpha).
+         \end{EQ}
+         Osserviamo che se $\pp[k-1](\alpha) = \pp[k](\alpha) = \pp[k+1](\alpha)=0$ 
+         allora dalla \eqref{eq:newton:021} seguirebbe 
+   \item per ogni $\alpha\in[a,b]$ tale che $\pp[0](\alpha)=0$, allora
+         $\pp[0]'(\alpha)\pp[1](\alpha)=-\pp[0]'(\alpha)^{2}<0$;
+\end{enumerate}
+
+
+
+\subsection{Limitazione delle radici}
+Per poter usare il metodo di bisezione e separare le radici con Sturm
+\`e necessario conoscere una prima stima anche se grossolana dell'
+intervallo in cui stanno tutte le radici di un polinomio.  Per fare
+questo occorre osservare che la seguente matrice in forma di Frobenius
+(Ferdinand Georg Frobenius 1849--1917)
+%%
+\begin{EQ}
+    \AA=\MAT{
+      0 & 1 & 0 & 0 & \cdots & 0 \\
+      0 & 0 & 1 & 0 & \cdots & 0 \\
+      0 & 0 & 0 & 1 & & \vdots\\
+      \vdots & & & \ddots & \ddots & 0\\
+      0 &  0 & 0 & \cdots & 0 & 1 \\
+      \dfrac{\aa[0]}{\aa[n]} & -\dfrac{\aa[1]}{\aa[n]} & \dfrac{\aa[2]}{\aa[n]}& \cdots & 
+      (-1)^{n-1}\dfrac{\aa[n-2]}{\aa[n]} & (-1)^{n}\dfrac{\aa[n-1]}{\aa[n]}
+    },
+\end{EQ}
+%%
+ha come polinomio caratteristico
+%%
+\begin{EQ}\label{eq:newton:poly}
+     \pp[](\lambda)=\DET{\AA-\lambda\II} = 
+      \dfrac{(-1)^{n}}{\aa[n]}\left(
+      \aa[0]+\aa[1]\Blambda[]+\aa[2]\Blambda[;2]+
+       \cdots+\aa[n-2]\Blambda[;n-2]+\aa[n-1]\Blambda[;n-1]+\aa[n]\Blambda[;n]\right),
+\end{EQ}
+%%
+(basta sviluppare lungo l'~ultima riga).  Applicando il teorema di
+Gershgorin alla matrice otteniamo che le radici del polinomio
+\eqref{eq:newton:poly} soddisfano
+%%
+\begin{EQ}
+    \abs{\lambda-\dfrac{\aa[n-1]}{\aa[n]}}\leq \abs{\dfrac{\aa[0]}{\aa[n]}}+\abs{\aa[1]} + \cdots + 
+    \abs{\dfrac{\aa[n-2]}{\aa[n]}},\qquad \abs{\lambda}\leq 1.
+\end{EQ}
+%%
+Applicando il teorema di Gershgorin alla matrice trasposta otteniamo
+che le radici del polinomio \eqref{eq:newton:poly} soddisfano
+%%
+\begin{EQ}
+    \abs{\lambda}\leq \abs{\dfrac{\aa[0]}{\aa[n]}},\qquad
+    \abs{\lambda}\leq \abs{\dfrac{\aa[i]}{\aa[n]}}+1,\qquad
+    \abs{\lambda-\dfrac{\aa[n-1]}{\aa[n]}}\leq 1.
+\end{EQ}
+%%
+Possiamo applicare le disegualianze appena viste (indebolendole un
+poco) ad un polinomio qualunque,
+%%
+\begin{EQ}
+    \pp[](\xx[]) = 
+    \aa[0]+\aa[1]\xx[]+\aa[2]\xx[;2]+\cdots+\aa[n-1]\xx[;n-1]+\aa[n]\xx[;n],
+\end{EQ} 
+%%
+ottenendo le seguenti limitazioni
+%%
+\begin{EQ}[rcl]
+    \abs{\xx[]} &\leq& \max\left\{
+         1, \sum_{i=0}^{n-1} \abs{\dfrac{\aa[i]}{\aa[n]}}
+    \right\},
+    \\
+    \abs{\xx[]} &\leq& \max\left\{
+         \abs{\dfrac{\aa[0]}{\aa[n]}},1+\max_{i=1}^{n-1}\abs{\dfrac{\aa[i]}{\aa[n]}}
+    \right\}.
+\end{EQ}
+% 
+
+
+
+\end{document}

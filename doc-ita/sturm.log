@@ -1,0 +1,542 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2022/dev) (preloaded format=pdflatex 2022.2.5)  9 FEB 2022 21:40
+entering extended mode
+ \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**sturm.tex
+(./sturm.tex
+LaTeX2e <2021-11-15> patch level 1
+L3 programming layer <2022-01-21>
+(/usr/local/texlive/2021/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
+(/usr/local/texlive/2021/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count185
+\c@section=\count186
+\c@subsection=\count187
+\c@subsubsection=\count188
+\c@paragraph=\count189
+\c@subparagraph=\count190
+\c@figure=\count191
+\c@table=\count192
+\abovecaptionskip=\skip47
+\belowcaptionskip=\skip48
+\bibindent=\dimen138
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks16
+)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/iftex/ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+
+(/usr/local/texlive/2021/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2020/03/06 v1.0d TeX engine tests
+))
+\Gm@cnth=\count193
+\Gm@cntv=\count194
+\c@Gm@tempcnt=\count195
+\Gm@bindingoffset=\dimen139
+\Gm@wd@mp=\dimen140
+\Gm@odd@mp=\dimen141
+\Gm@even@mp=\dimen142
+\Gm@layoutwidth=\dimen143
+\Gm@layoutheight=\dimen144
+\Gm@layouthoffset=\dimen145
+\Gm@layoutvoffset=\dimen146
+\Gm@dimlist=\toks17
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2021/12/07 v1.3c Standard LaTeX Color (DPC)
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package color Info: Driver file: pdftex.def on input line 149.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
+))
+(/usr/local/texlive/2021/texmf-dist/tex/latex/psnfss/times.sty
+Package: times 2020/03/25 PSNFSS-v9.3 (SPQR) 
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/bbm-macros/bbm.sty
+Package: bbm 1999/03/15 V 1.2 provides fonts for set symbols - TH
+LaTeX Font Info:    Overwriting math alphabet `\mathbbm' in version `bold'
+(Font)                  U/bbm/m/n --> U/bbm/bx/n on input line 33.
+LaTeX Font Info:    Overwriting math alphabet `\mathbbmss' in version `bold'
+(Font)                  U/bbmss/m/n --> U/bbmss/bx/n on input line 35.
+)
+(/usr/local/texlive/2021/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2022/01/26 3.70 The Babel package
+\babel@savecnt=\count196
+\U@D=\dimen147
+\l@unhyphenated=\language87
+
+(/usr/local/texlive/2021/texmf-dist/tex/generic/babel/txtbabel.def)
+\bbl@readstream=\read2
+\bbl@dirlevel=\count197
+
+(/usr/local/texlive/2021/texmf-dist/tex/generic/babel-italian/italian.ldf
+Language: italian 2020/05/21 v.1.4.04 Italian support for the babel system
+\it@lettering=\count198
+\it@doublequoteactive=\count199
+\it@ISOcompliance=\count266
+))
+(/usr/local/texlive/2021/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count267
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/easy/easyeqn.sty
+Document Style `easyeqn' v1.94 <2002/03/18>.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/easy/easy.sty
+Document Style `easy' v1.1 <2001/05/31>.
+Package: easy 2001/05/31 v1.1
+\@easy@level=\count268
+\@easy@ncol=\count269
+\@easy@nrow=\count270
+\@easy@cnt=\count271
+\@easy@boxviii=\box50
+\@easy@minxviii=\dimen148
+\@easy@minyviii=\dimen149
+\@easy@maxxviii=\dimen150
+\@easy@maxyviii=\dimen151
+\@easy@boxvii=\box51
+\@easy@minxvii=\dimen152
+\@easy@minyvii=\dimen153
+\@easy@maxxvii=\dimen154
+\@easy@maxyvii=\dimen155
+\@easy@boxvi=\box52
+\@easy@minxvi=\dimen156
+\@easy@minyvi=\dimen157
+\@easy@maxxvi=\dimen158
+\@easy@maxyvi=\dimen159
+\@easy@boxv=\box53
+\@easy@minxv=\dimen160
+\@easy@minyv=\dimen161
+\@easy@maxxv=\dimen162
+\@easy@maxyv=\dimen163
+\@easy@boxiv=\box54
+\@easy@minxiv=\dimen164
+\@easy@minyiv=\dimen165
+\@easy@maxxiv=\dimen166
+\@easy@maxyiv=\dimen167
+\@easy@boxiii=\box55
+\@easy@minxiii=\dimen168
+\@easy@minyiii=\dimen169
+\@easy@maxxiii=\dimen170
+\@easy@maxyiii=\dimen171
+\@easy@boxii=\box56
+\@easy@minxii=\dimen172
+\@easy@minyii=\dimen173
+\@easy@maxxii=\dimen174
+\@easy@maxyii=\dimen175
+\@easy@boxi=\box57
+\@easy@minxi=\dimen176
+\@easy@minyi=\dimen177
+\@easy@maxxi=\dimen178
+\@easy@maxyi=\dimen179
+\@easy@hsizexxx=\dimen180
+\@easy@vsizexxx=\dimen181
+\@easy@hsizexxix=\dimen182
+\@easy@vsizexxix=\dimen183
+\@easy@hsizexxviii=\dimen184
+\@easy@vsizexxviii=\dimen185
+\@easy@hsizexxvii=\dimen186
+\@easy@vsizexxvii=\dimen187
+\@easy@hsizexxvi=\dimen188
+\@easy@vsizexxvi=\dimen189
+\@easy@hsizexxv=\dimen190
+\@easy@vsizexxv=\dimen191
+\@easy@hsizexxiv=\dimen192
+\@easy@vsizexxiv=\dimen193
+\@easy@hsizexxiii=\dimen194
+\@easy@vsizexxiii=\dimen195
+\@easy@hsizexxii=\dimen196
+\@easy@vsizexxii=\dimen197
+\@easy@hsizexxi=\dimen198
+\@easy@vsizexxi=\dimen199
+\@easy@hsizexx=\dimen256
+\@easy@vsizexx=\dimen257
+\@easy@hsizexix=\dimen258
+\@easy@vsizexix=\dimen259
+\@easy@hsizexviii=\dimen260
+\@easy@vsizexviii=\dimen261
+\@easy@hsizexvii=\dimen262
+\@easy@vsizexvii=\dimen263
+\@easy@hsizexvi=\dimen264
+\@easy@vsizexvi=\dimen265
+\@easy@hsizexv=\dimen266
+\@easy@vsizexv=\dimen267
+\@easy@hsizexiv=\dimen268
+\@easy@vsizexiv=\dimen269
+\@easy@hsizexiii=\dimen270
+\@easy@vsizexiii=\dimen271
+\@easy@hsizexii=\dimen272
+\@easy@vsizexii=\dimen273
+\@easy@hsizexi=\dimen274
+\@easy@vsizexi=\dimen275
+\@easy@hsizex=\dimen276
+\@easy@vsizex=\dimen277
+\@easy@hsizeix=\dimen278
+\@easy@vsizeix=\dimen279
+\@easy@hsizeviii=\dimen280
+\@easy@vsizeviii=\dimen281
+\@easy@hsizevii=\dimen282
+\@easy@vsizevii=\dimen283
+\@easy@hsizevi=\dimen284
+\@easy@vsizevi=\dimen285
+\@easy@hsizev=\dimen286
+\@easy@vsizev=\dimen287
+\@easy@hsizeiv=\dimen288
+\@easy@vsizeiv=\dimen289
+\@easy@hsizeiii=\dimen290
+\@easy@vsizeiii=\dimen291
+\@easy@hsizeii=\dimen292
+\@easy@vsizeii=\dimen293
+\@easy@hsizei=\dimen294
+\@easy@vsizei=\dimen295
+\@easy@dash@len=\dimen296
+\@easy@dash@sep=\dimen297
+)
+Package: easyeqn 2001/05/31 v1.1
+\@EQ@leftmargin=\dimen298
+\@EQ@col@sep=\dimen299
+\@EQ@DP@n=\count272
+\@EQ@DP@nt=\count273
+\@EQ@EQN@BOX=\box58
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/easy/easyvector.sty
+Document Style `easyvector' v1.0 <1999/03/16>.
+Package: easyvector 1999/03/16 v1.0
+\@VET@bracecnt=\count274
+\symboperators=\mathgroup4
+\symbsymbols=\mathgroup5
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/ntheorem/ntheorem.sty
+Style `ntheorem', Version 1.33 <2011/08/15>
+Package: ntheorem 2011/08/15 1.33
+(/usr/local/texlive/2021/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2020/11/24 v1.1c Standard LaTeX ifthen package (DPC)
+)
+\theorem@style=\toks18
+\theorem@@style=\toks19
+\theorembodyfont=\toks20
+\theoremnumbering=\toks21
+\theorempreskipamount=\skip49
+\theorempostskipamount=\skip50
+\theoremframepreskipamount=\skip51
+\theoremframepostskipamount=\skip52
+\theoreminframepreskipamount=\skip53
+\theoreminframepostskipamount=\skip54
+\theorem@preskip=\toks22
+\theorem@postskip=\toks23
+\theorem@framepreskip=\toks24
+\theorem@framepostskip=\toks25
+\theorem@inframepreskip=\toks26
+\theorem@inframepostskip=\toks27
+\theoremindent=\dimen300
+\theorem@indent=\dimen301
+\theoremrightindent=\dimen302
+\theorem@rightindent=\dimen303
+\theoremheaderfont=\toks28
+\theoremseparator=\toks29
+\theoremprework=\toks30
+\theorempostwork=\toks31
+\theoremsymbol=\toks32
+\qedsymbol=\toks33
+\theoremkeyword=\toks34
+\qedsymbol=\toks35
+\thm@topsep=\skip55
+\thm@topsepadd=\skip56
+Package ntheorem Info: Option `thmmarks' loaded on input line 1175.
+\c@endNonectr=\count275
+\c@currNonectr=\count276
+\mysavskip=\skip57
+)
+\c@currproposizionectr=\count277
+\c@endproposizionectr=\count278
+\c@proposizione=\count279
+\c@currteoremactr=\count280
+\c@endteoremactr=\count281
+\c@teorema=\count282
+\c@currlemmactr=\count283
+\c@endlemmactr=\count284
+\c@currcorollarioctr=\count285
+\c@endcorollarioctr=\count286
+\c@currdefinizionectr=\count287
+\c@enddefinizionectr=\count288
+\c@definizione=\count289
+\c@currosservazionectr=\count290
+\c@endosservazionectr=\count291
+\c@osservazione=\count292
+\c@curresempioctr=\count293
+\c@endesempioctr=\count294
+\c@esempio=\count295
+\c@currproblemactr=\count296
+\c@endproblemactr=\count297
+\c@problema=\count298
+\c@currapplicazionectr=\count299
+\c@endapplicazionectr=\count300
+\c@applicazione=\count301
+\c@curresercizioctr=\count302
+\c@endesercizioctr=\count303
+\c@esercizio=\count304
+\c@currdimostrazionectr=\count305
+\c@enddimostrazionectr=\count306
+\c@dimostrazione=\count307
+\c@currsoluzionectr=\count308
+\c@endsoluzionectr=\count309
+\c@soluzione=\count310
+LaTeX Font Info:    Redeclaring math alphabet \mathcal on input line 56.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/sectsty/sectsty.sty
+Package: sectsty 2002/02/25 v2.0.2 Commands to change all sectional heading sty
+les
+
+
+LaTeX Warning: Command \underbar  has changed.
+               Check if current package is valid.
+
+
+LaTeX Warning: Command \underline  has changed.
+               Check if current package is valid.
+
+) (./appunti.sty
+Package: appunti 
+ (./macros//algo.sty
+
+LaTeX Warning: You have requested package `macros//algo',
+               but the package provides `algo'.
+
+Package: algo 1996/02/12 v1.2 LaTeX2e package for pseudo code
+Package: `algo' v1.2 for pseudo code
+(/usr/local/texlive/2021/texmf-dist/tex/latex/tools/xspace.sty
+Package: xspace 2014/10/28 v1.13 Space after command names (DPC,MH)
+)
+\a@movein=\skip58
+\a@curwidth=\skip59
+\c@a@line=\count311
+\c@algorithm=\count312
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+Package: fancyhdr 2021/01/28 v4.0.1 Extensive control of page headers and foote
+rs
+\f@nch@headwidth=\skip60
+\f@nch@O@elh=\skip61
+\f@nch@O@erh=\skip62
+\f@nch@O@olh=\skip63
+\f@nch@O@orh=\skip64
+\f@nch@O@elf=\skip65
+\f@nch@O@erf=\skip66
+\f@nch@O@olf=\skip67
+\f@nch@O@orf=\skip68
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Package: fancyvrb 2021/12/21 4.1b verbatim text (tvz,hv)
+\FV@CodeLineNo=\count313
+\FV@InFile=\read3
+\FV@TabBox=\box59
+\c@FancyVerbLine=\count314
+\FV@StepNumber=\count315
+\FV@OutFile=\write3
+)
+\@algo@labelw=\skip69
+\@algo@boxwidth=\skip70
+\@algo@rulew=\skip71
+\@algo@box=\box60
+\@algo@label=\box61
+\c@algocounter=\count316
+\c@programcounter=\count317
+\tempbox=\box62
+\c@AlphaCnt=\count318
+\c@AlphaDecCnt=\count319
+)
+LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 8
+9.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/psnfss/ot1ptm.fd
+File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
+)
+(/usr/local/texlive/2021/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count320
+\l__pdf_internal_box=\box63
+)
+(./sturm.aux)
+\openout1 = `sturm.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 89.
+LaTeX Font Info:    ... okay on input line 89.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: twoside 
+* h-part:(L,W,R)=(71.70166pt, 418.25368pt, 107.55254pt)
+* v-part:(T,H,B)=(101.40665pt, 591.5302pt, 152.11pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=418.25368pt
+* \textheight=591.5302pt
+* \oddsidemargin=-0.56833pt
+* \evensidemargin=35.28255pt
+* \topmargin=-7.86334pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=121.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidetrue
+* \@mparswitchtrue
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+(/usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count321
+\scratchdimen=\dimen304
+\scratchbox=\box64
+\nofMPsegments=\count322
+\nofMParguments=\count323
+\everyMPshowfont=\toks36
+\MPscratchCnt=\count324
+\MPscratchDim=\dimen305
+\MPnumerator=\count325
+\makeMPintoPDFobject=\count326
+\everyMPtoPDFconversion=\toks37
+)
+LaTeX Info: Redefining \it@ocap on input line 89.
+LaTeX Info: Redefining \it@ccap on input line 89.
+
+
+File italian.ldf warning: 
+italian.ldf    With OT1 encoding guillemets are poorly faked
+italian.ldf    Use T1 encoding
+italian.ldf    or specify a font with command \CaporaliFrom
+italian.ldf    See the documentation concerning the babel-italian typesetting 
+italian.ldf    on input line 89.
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 95.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 95.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 95.
+LaTeX Font Info:    Trying to load font information for OML+cmr on input line 9
+5.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/base/omlcmr.fd
+File: omlcmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OML/cmr/bx/it' in size <12> not available
+(Font)              Font shape `OML/cmm/b/it' tried instead on input line 95.
+LaTeX Font Info:    Font shape `OML/cmr/bx/it' in size <8> not available
+(Font)              Font shape `OML/cmm/b/it' tried instead on input line 95.
+LaTeX Font Info:    Font shape `OML/cmr/bx/it' in size <6> not available
+(Font)              Font shape `OML/cmm/b/it' tried instead on input line 95.
+LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 9
+5.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/psnfss/ot1pcr.fd
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+)
+LaTeX Font Info:    Font shape `OT1/pcr/m/it' in size <12> not available
+(Font)              Font shape `OT1/pcr/m/sl' tried instead on input line 95.
+LaTeX Font Info:    Trying to load font information for OT1+phv on input line 9
+9.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/psnfss/ot1phv.fd
+File: ot1phv.fd 2020/03/25 scalable font definitions for OT1/phv.
+)
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 107.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 107.
+LaTeX Font Info:    Font shape `OML/cmr/bx/it' in size <10> not available
+(Font)              Font shape `OML/cmm/b/it' tried instead on input line 107.
+LaTeX Font Info:    Font shape `OML/cmr/bx/it' in size <7> not available
+(Font)              Font shape `OML/cmm/b/it' tried instead on input line 107.
+LaTeX Font Info:    Font shape `OML/cmr/bx/it' in size <5> not available
+(Font)              Font shape `OML/cmm/b/it' tried instead on input line 107.
+ [1
+
+{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
+ [4] [5]
+LaTeX Font Info:    Trying to load font information for U+eus on input line 400
+.
+
+(/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/ueus.fd
+File: ueus.fd 2013/01/14 v3.01 Euler Script
+)
+LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <10> not available
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 403.
+ [6] [7]
+[8]
+\tf@thm=\write4
+\openout4 = `sturm.thm'.
+
+ [9] (./sturm.aux) ) 
+Here is how much of TeX's memory you used:
+ 5501 strings out of 478287
+ 83482 string characters out of 5846751
+ 417061 words of memory out of 5000000
+ 23606 multiletter control sequences out of 15000+600000
+ 505980 words of font info for 95 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 55i,16n,69p,224b,498s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r
+.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.
+pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.p
+fb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pf
+b></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb>
+</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></
+usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></us
+r/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/
+local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/lo
+cal/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local
+/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/te
+xlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texli
+ve/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/
+2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2
+021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/202
+1/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2021
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmti7.pfb></usr/local/texlive/2021/t
+exmf-dist/fonts/type1/public/amsfonts/euler/eusm10.pfb></usr/local/texlive/2021
+/texmf-dist/fonts/type1/urw/courier/ucrro8a.pfb></usr/local/texlive/2021/texmf-
+dist/fonts/type1/urw/helvetic/uhvb8a.pfb></usr/local/texlive/2021/texmf-dist/fo
+nts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/typ
+e1/urw/helvetic/uhvro8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw
+/times/utmb8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/times/utm
+r8a.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on sturm.pdf (9 pages, 252322 bytes).
+PDF statistics:
+ 155 PDF objects out of 1000 (max. 8388607)
+ 95 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+

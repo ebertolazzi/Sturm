@@ -1,4 +1,5 @@
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% Return a string with human readable polynomial representation.
+%
 function out = to_string( self )
   out   = '';
   empty = true; % true indica che i coefficienti finora sono nulli

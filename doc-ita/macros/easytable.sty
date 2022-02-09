@@ -1,0 +1,149 @@
+%%% ====================================================================
+%%%  @LaTeX-style-file{
+%%%     author          = "Enrico Bertolazzi",
+%%%     version         = "0.9",
+%%%     date            = "16-MAR-99",
+%%%     filename        = "easytable.sty",
+%%%     address         = "Laboratorio di Matematica Applicata
+%%%                        e Meccanica Strutturale,
+%%%                        Trento University,
+%%%                        Via Mesiano, Trento, Italy",
+%%%     FAX             = "+39 (461) 882599",
+%%%     email           = "enrico.bertolazzi@ing.unitn.it (Internet)",
+%%%     supported       = "yes. Please send comments via E-mail",
+%%%     docstring       = "package for easy typing equations."
+%%% INSTALLATION:
+%%%   Put this file where your TeX looks for inputs.
+%%%
+%%% DOCUMENTATION:
+%%%   Compile doctable.tex.
+%%%
+%%%   Copyright  1999 Enrico Bertolazzi
+%%%
+%%%   This program can be redistributed and/or modified under the terms
+%%%   of the LaTeX Project Public License Distributed from CTAN
+%%%   archives in directory macros/latex/base/lppl.txt; either
+%%%   version 1 of the License, or any later version.
+%%%
+%%% }
+%%% ====================================================================%%%
+%%%       ___    ____  ___   _   _         ___    ____  ___   _   _     %%%
+%%%      /   \  /     /   \  \  /         /   \  /     /   \  \  /      %%%
+%%%     /____/ /__   /____/   \/         /____/ /__   /____/   \/       %%%
+%%%    /   \  /     /  \      /         /   \  /     /  \      /        %%%
+%%%   /____/ /____ /    \    /         /____/ /____ /    \    /         %%%
+%%% ====================================================================%%%
+\def\filedate{1999/03/16}
+\def\fileversion{v0.99}
+\typeout{Document Style `easytable' \fileversion\space<\filedate>.}
+%%
+\NeedsTeXFormat{LaTeX2e}
+\RequirePackage{easy}
+\ProvidesPackage{easytable}[\filedate \fileversion]
+
+\DeclareOption{thinlines}{%
+   \@tab@size@rule=.7pt
+   \@tab@size@dash=.5pt
+}
+
+\DeclareOption{thicklines}{%
+   \@tab@size@rule=1.5pt
+   \@tab@size@dash=1.2pt
+}
+
+\DeclareOption{thiklines}{%
+   \@tab@size@rule=1.5pt
+   \@tab@size@dash=1.2pt
+}
+
+\newdimen\@tab@size@rule\@tab@size@rule=1pt
+\newdimen\@tab@size@dash\@tab@size@dash=.7pt
+
+\ProcessOptions
+
+\@easy@disable@space
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\@tab@addcol{\g@addto@macro\@tab@preamble{\@killglue##\@killglue&}}
+\def\@tab@make@preamble{%
+   \@easy@let(@easy@align){@easy@col@align\@roman\@easy@level}%
+   \@easy@let(@easy@rules){@easy@col@rules\@roman\@easy@level}%
+   \gdef\@tab@preamble{%
+       \vbox\bgroup\lineskip\z@skip%
+                   \tabskip\z@skip%
+                   \baselineskip\z@skip%
+                   \everycr{}\halign\bgroup}%
+   \@easy@rotate\@easy@align%
+   \loop%
+      \@easy@rotate\@easy@align%
+      \edef\@tempa{\@easy@firstchar\@easy@align}%
+   \expandafter\ifx\@tempa`\relax\else%
+      \@tab@addcol%
+   \repeat%
+   \g@addto@macro\@tab@preamble{\@killglue##\@killglue\crcr}
+}
+
+\def\TAB{\advance\@easy@level\@ne\@ifnextchar({\@TAB}{\@TAB(@)}}
+\def\@TAB(#1){
+    \def\@TAB@split##1,##2,##3,##4\end{
+       \@easy@xdef(@tab@balance\@roman\@easy@level){##1}%
+       \global\@nameuse{@easy@minx\@roman\@easy@level}=##2
+       \global\@nameuse{@easy@miny\@roman\@easy@level}=##3
+    }
+    \expandafter\@TAB@split#1,\z@,\z@, \end
+    \@@TAB}
+    
+\def\@@TAB{\@ifnextchar[{\@@@TAB}{\@@@TAB[2pt]}}
+
+\def\@@@TAB[#1]#2#3{
+    \def\@TAB@split##1,##2,##3,##4\end{
+       \@easy@xdef(@tab@spread\@roman\@easy@level){##1}%
+       \global\@nameuse{@easy@maxx\@roman\@easy@level}=##2
+       \global\@nameuse{@easy@maxy\@roman\@easy@level}=##3
+    }
+    \expandafter\@TAB@split#1,\z@,\z@, \end
+	\@easy@parse@cols{#2}
+	\@easy@parse@rows{#3}%
+	\@tab@make@preamble%
+    \global\let\@easy@path\@empty%
+    \def\\{\crcr}%
+ 	\setbox\@nameuse{@easy@box\@roman\@easy@level}
+    \@tab@preamble
+}
+
+\def\endTAB{%
+	\crcr\egroup\egroup%
+    \@easy@glet(@easy@mainbox)   {@easy@box\@roman\@easy@level}%
+    \@easy@glet(@easy@col@align) {@easy@col@align\@roman\@easy@level}%
+    \@easy@glet(@easy@col@rules) {@easy@col@rules\@roman\@easy@level}%
+    \@easy@glet(@easy@row@align) {@easy@row@align\@roman\@easy@level}%
+    \@easy@glet(@easy@row@rules) {@easy@row@rules\@roman\@easy@level}%
+    \@easy@glet(@easy@minx)      {@easy@minx\@roman\@easy@level}%
+    \@easy@glet(@easy@miny)      {@easy@miny\@roman\@easy@level}%
+    \@easy@glet(@easy@maxx)      {@easy@maxx\@roman\@easy@level}%
+    \@easy@glet(@easy@maxy)      {@easy@maxy\@roman\@easy@level}%
+    %
+    \@easy@glet(@easy@spread)    {@tab@spread\@roman\@easy@level}%
+    \@easy@glet(@easy@balance)   {@tab@balance\@roman\@easy@level}%
+    %
+    \global\let\@easy@size@dash\@tab@size@dash
+    \global\let\@easy@size@rule\@tab@size@rule
+    %
+    \@easy@evaldim%
+    \typeout{Easytable [row:\the\@easy@nrow,col:\the\@easy@ncol]}
+    \@easy@balance@row@col%
+    \@easy@buildbox%
+    \@easy@vlines%
+    \@easy@hlines%
+	\mbox{\rlap{\box\@ne}
+	      \rlap{\box\tw@}
+	      \ifx\@easy@path\@empty\else\@easy@dopath\rlap{\box\thr@@}\fi
+	      \box\@easy@mainbox}%
+    \advance\@easy@level\m@ne
+}
+
+\@easy@enable@space
+
+\endinput
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

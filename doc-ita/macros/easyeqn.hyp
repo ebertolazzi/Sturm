@@ -1,0 +1,11 @@
+\def\@EQ@stepnumber{\refstepcounter{equation}\global\let\@currenthyper\@currenthyper}
+\def\@EQ@base@eqnum{\hyperanchor{\@currenthyper}{\reset@font\rmfamily(\theequation)}}%
+% 
+\def\@EQ@custom@eqnum#1{%
+\hyper@setcurrent\global\let\@currenthyper\@currenthyper%
+\xdef\@EQ@eqnum{\noexpand\hyperanchor{noexpand\@currenthyper}{#1}}}
+%\let\@EQ@old@label\hyperlabel
+
+\endinput
+%%
+%% End of file `easyeqn.hyp'.

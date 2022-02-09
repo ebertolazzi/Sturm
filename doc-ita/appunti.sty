@@ -1,0 +1,228 @@
+\NeedsTeXFormat{LaTeX2e}[1995/12/01]
+\ProvidesClass{appunti}
+
+\@ifundefined{leqslant}{}{%
+   \global\let\leq\leqslant%
+   \global\let\geq\geqslant%
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage[named]{algo}
+\def\qswap{\ensuremath{\mathrel{\leftrightarrow}}}
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{fancyhdr}
+\fancypagestyle{myfancy}{
+  \fancyhf{} % clear all
+  \fancyhead[el]{\fancyplain{}{\sffamily\bfseries\thepage}}
+  \fancyhead[er]{\fancyplain{}{\sffamily\bfseries\leftmark}}
+  \fancyhead[or]{\fancyplain{}{\sffamily\bfseries\thepage}}
+  \fancyhead[ol]{\fancyplain{}{\sffamily\bfseries\rightmark}}
+}
+
+\usepackage{fancyvrb}
+\DefineVerbatimEnvironment
+  {Code}{Verbatim}
+  {%fontfamily=courier,
+   fontsize=\small,
+   framesep=2mm,
+   frame=single,
+   framerule=1pt,
+   rulecolor=\color{green},
+%    fillcolor=\color{yellow},
+%    formatcom=\color{blue},
+   numbersep=3pt,
+   xleftmargin=1em,
+   xrightmargin=1em}
+
+
+\newlength\@algo@labelw
+\setlength\@algo@labelw{0.5\columnwidth}
+
+\newlength\@algo@boxwidth
+\setlength\@algo@boxwidth{0.9\columnwidth}
+
+\newlength\@algo@rulew
+\setlength\@algo@rulew{1pt}
+
+\newbox\@algo@box
+\newbox\@algo@label
+  
+\def\algo#1{%
+  \setbox0\hbox{#1}%
+  \ifdim\wd0>\@algo@labelw
+     \setbox\@algo@label\hbox{\fbox{\parbox[t]{\@algo@labelw}{\unhbox0}}}
+  \else
+     \setbox\@algo@label\hbox{\fbox{\box0}}
+  \fi
+  \setbox\@algo@box\vbox\bgroup\vskip0.5em%
+  \hbox\bgroup\hskip1em\begin{minipage}{\@algo@boxwidth}}
+  
+\def\endalgo{\end{minipage}\hskip1em\egroup\vskip0.5em\egroup%
+\@tempdima=\dp\@algo@label%
+\advance\@tempdima-\ht\@algo@label%
+\divide\@tempdima2%
+\setbox\@algo@label\hbox{\raise\the\@tempdima\box\@algo@label}%
+\setbox0\vbox{%
+\offinterlineskip%
+\@tempdima=\wd\@algo@box\advance\@tempdima-\wd\@algo@label\divide\@tempdima2%
+\@tempdimb=\dp\@algo@label%
+\@tempdimc=\wd\@algo@box\advance\@tempdimc2\@algo@rulew
+\hbox to \@tempdimc{%
+\vrule width\@algo@rulew depth\@tempdimb height0pt%
+\vrule width\@tempdima depth\@algo@rulew height0pt%
+\box\@algo@label%
+\vrule width\@tempdima depth\@algo@rulew height0pt%
+\vrule width\@algo@rulew depth\@tempdimb height0pt}
+\hbox{\vrule width\@algo@rulew\box\@algo@box\vrule width\@algo@rulew}
+\hrule depth0pt height\@algo@rulew}
+\vskip1.5em%
+\centering{\mbox{\box0}}
+\vskip1.5em}
+
+\newcounter{algocounter}
+\newenvironment{algoritmo}[1]{
+  \refstepcounter{algocounter}
+  \begin{algo}{\textbf{Algoritmo~\thealgocounter:} #1}
+}{\end{algo}}
+
+\newcounter{programcounter}
+\newcommand{\PROG}[2]{
+  \refstepcounter{programcounter}
+  \VerbatimInput[label={\textbf{Programma~\theprogramcounter:} #2},
+                 fontsize=\scriptsize,framesep=2mm,
+		 frame=single,framerule=1pt,rulecolor=\color{green}]{#2}
+}
+
+\newbox\tempbox
+% 
+\def\BOX{%
+    \setbox\tempbox\hbox\bgroup
+    \begin{minipage}{0.9\textwidth}
+}
+\def\endBOX{%
+    \end{minipage}
+    \egroup
+    \par\bigskip
+    \begin{center}
+        \fboxsep=10pt\fbox{\box\tempbox}
+    \end{center}
+    \bigskip\par
+}
+
+\def\mghrulefill#1{\leavevmode\leaders\hrule\@height #1\hfill\kern\z@}
+
+%%%%%%% BJARNE DEF
+
+\newcounter{AlphaCnt}
+\newcounter{AlphaDecCnt}
+
+\newcommand{\AlphaNo}{%
+\ifcase\number\theAlphaCnt
+\ifnum\number\thechapter=0 ZERO\else{}\fi
+\or UNO\or DUE\or TREE\or QUATTRO\or CINQUE
+\or SEI\or SETTE\or OTTO\or NOVE\or DIECI
+\or UNDICI\or DOCICI\or TREDICI\or QUATTORDICI\or QUINDICI
+\or SEDICI\or DICIASSETTE\or DICIOTTO\or DICIANNOVE\fi
+}
+
+\newcommand{\AlphaDecNo}{%
+  \setcounter{AlphaDecCnt}{0}
+  \@whilenum\number\theAlphaCnt>0\do
+  {\addtocounter{AlphaCnt}{-10}
+  \addtocounter{AlphaDecCnt}{1}}
+  \ifnum\number\theAlphaCnt=0
+  \else
+  \addtocounter{AlphaDecCnt}{-1}
+  \addtocounter{AlphaCnt}{10}
+  \fi
+  \ifcase\number\theAlphaDecCnt\or TEN\or TWENTY\or THIRTY\or
+  FORTY\or FIFTY\or SIXTY\or SEVENTY\or EIGHTY\or NINETY\fi
+}
+  
+\newcommand{\TheAlphaChapter}{%
+  \setcounter{AlphaCnt}{\number\thechapter}
+  \ifnum\number\thechapter<20\AlphaNo\else\AlphaDecNo\AlphaNo\fi
+}  
+
+\def\@makechapterhead#1{%
+  \vspace*{50\p@}%
+  {\parindent\z@\raggedleft
+    \ifnum\c@secnumdepth>\m@ne
+      \mghrulefill{1pt}\par\nobreak
+      \normalsize\normalfont{\color{headercolor}\MakeUppercase{\@chapapp}}\par\nobreak 
+      \sffamily\bfseries\Large{\color{headercolor}\TheAlphaChapter}\par\nobreak
+      \vskip -1\baselineskip\vskip 5pt\mghrulefill{1pt}\par\nobreak
+      \vskip 20\p@
+    \fi
+    \interlinepenalty\@M
+    \sffamily\bfseries\Large{\color{headercolor}\MakeUppercase{#1}}\par\nobreak
+    \vskip40\p@
+}}
+% 		 
+\def\@makeschapterhead#1{%
+  \vspace*{50\p@}%
+  {\parindent\z@\interlinepenalty\@M
+   \raggedleft\sffamily\bfseries\Large{\color{headercolor}\MakeUppercase{#1}}\par\nobreak
+   \vskip 80\p@
+}}
+
+\newcommand{\MATNP}[1]{\begin{MATRIX}#1\end{MATRIX}}
+\newcommand{\MAT}[1]{\left[\MATNP{#1}\right]}
+\newcommand{\MATR}[1]{\left(\MATNP{#1}\right)}
+
+\newcommand{\NU}[1]{{\norm{#1}_1}}
+\newcommand{\NI}[1]{{\norm{#1}_\infty}}
+\newcommand{\ND}[1]{{\norm{#1}_2}}
+\newcommand{\DET}[1]{{\abs{\MATNP{#1}}}}
+\renewcommand{\det}[1]{det\MATR{#1}}
+\newcommand{\LIM}[2]{\lim_{\ds{#1\mapsto#2}}}
+
+\def\RANGO#1{{\Cal{R}\left\{#1\right\}}}
+\def\CRAMER#1[#2]#3{{\displaystyle{#1}\stackrel{#2}{\longleftarrow}{#3}}}
+\def\COFATT#1{\mbox{cft}\left\{#1\right\}}
+\def\SPAN#1{\mbox{span}\left\{#1\right\}}
+
+\newenvironment{sistema}[1]
+{\left\{\displaystyle\begin{ARRAY}{#1}}{\end{ARRAY}\right.}
+
+\newvector[\mathstrut,\mathstrut]{indices}
+\def\zero{\mathbf{0}}
+\def\uno{\mathbf{1}}
+
+\def\BZ#1{\mbox{\textcircled{\textbf{#1}}}}
+\def\EQBOX{\eqbox(1pt,10pt)}
+
+\let\ds\displaystyle
+\let\IMP\Rightarrow
+\let\IMPD\Downarrow
+\let\SSE\Leftrightarrow
+% 
+\newcommand{\MATBL}[4]{%   
+    \left[\begin{BMAT}(@,1cm,1cm){c.c}{c.c}
+       #1 & #2 \\
+       #3 & #4
+    \end{BMAT}\right]}
+ 
+\newcommand{\KER}{\Cal{K}}
+\def\ubar#1{\protect\underline{#1}}
+\let\ERR\Bvarepsilon
+
+\newvector[{\Delta x},{\Delta x}]{DX}
+\newvector[{\Delta y},{\Delta y}]{DY}
+\newvector[{\Delta t},{\Delta t}]{DT}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\img{\imath}
+\let\conj\overline
+\def\pvect#1#2{{{#1}\wedge{#2}}}
+\def\scal#1#2{{{#1}\cdot{#2}}}
+\def\SCAL{\@ifnextchar[\@SCAL{\@SCAL[]}}
+\def\@SCAL[#1]#2#3{\@@SCAL{#2}{#3}_{#1}}
+\def\@@SCAL#1#2{\left<#1,#2\right>}
+\def\Reale#1{\mathit{Re}\left\{#1\right\}}
+\def\Immaginaria#1{\mathit{Im}\left\{#1\right\}}
+
+\endinput

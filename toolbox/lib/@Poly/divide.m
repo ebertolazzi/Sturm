@@ -1,4 +1,13 @@
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+% Division with remainder.
+%
+% Given a polynomial P(x) and Q(x) the operation
+%
+% [M,R] = P.divide(Q);
+%
+% return the polynomial M(x) and R(x) such that
+%
+% P(x) = Q(x) * M(x) + R(x)
+%
 function [Mpoly,Rpoly] = divide( self, QP )
 
   epsi = 100*eps;
