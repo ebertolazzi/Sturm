@@ -5,8 +5,8 @@ function n_roots = refine_roots( self, tol )
   self.m_roots = zeros(1,NR);
   for n=1:NR
     I0 = self.m_intervals{n};
-    a = I0.a;
-    b = I0.b;
+    a  = I0.a;
+    b  = I0.b;
     % ------------------------
     fa = P.eval( a );
     fb = P.eval( b );
@@ -24,8 +24,12 @@ function n_roots = refine_roots( self, tol )
         x  = b - dx;
       end
       % If Newton failed use bisection
-      if ~( x > a && x < b )
-        x = (a+b)/2;
+      ba    = b-a;
+      a_min = a+0.1*ba;
+      b_max = b-0.1*ba;
+      if x < a_min || x > b_max
+        x    = (a+b)/2;
+        n_ok = 0; % if using bisection reset quasi ok iteration count
       end
       fx  = P.eval( x );
       ok1 = abs(fx) < tol;

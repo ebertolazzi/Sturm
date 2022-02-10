@@ -38,13 +38,10 @@ function n_roots = separate_roots( self, a, b )
       for iter=2:10
         c = (I0.a*iter+I0.b)/(1+iter);
         [vc,vroot] = self.sign_variations(c);
-        if ~vroot; break; end
-      end
-    end
-    if vroot
-      for iter=2:10
-        c = (I0.a+I0.b*iter)/(1+iter);
-        [vc,vroot] = self.sign_variations(c);
+        if vroot
+          c = (I0.a+I0.b*iter)/(1+iter);
+          [vc,vroot] = self.sign_variations(c);
+        end
         if ~vroot; break; end
       end
     end
