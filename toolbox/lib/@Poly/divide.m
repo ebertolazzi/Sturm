@@ -26,6 +26,10 @@ function [Mpoly,Rpoly] = divide( self, QP )
   dd      = R_order - Q_order + 1;
   M       = zeros(1,dd);
 
+  if lcQ == 0
+    error( 'Poly::divide leading coefficient is 0!');
+  end
+
   while dd > 0 && R_order > 0
     lcR        = R(R_order);
     bf         = lcR/lcQ;

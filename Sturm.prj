@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.toolbox" plugin-version="1.0">
-  <configuration build-checksum="1620437302" file="/Users/enrico/Ricerca/Software/REPOS/myReposGit/Sturm/Sturm.prj" location="/Users/enrico/Ricerca/Software/REPOS/myReposGit/Sturm" name="Sturm" target="target.toolbox" target-name="Package Toolbox">
+  <configuration build-checksum="1013105180" file="/Users/enrico/Ricerca/Software/REPOS/myReposGit/Sturm/Sturm.prj" location="/Users/enrico/Ricerca/Software/REPOS/myReposGit/Sturm" name="Sturm" target="target.toolbox" target-name="Package Toolbox">
     <param.appname>Sturm</param.appname>
     <param.authnamewatermark>Enrico Bertolazzi</param.authnamewatermark>
     <param.email>enrico.bertolazzi@unitn.it</param.email>
@@ -7,7 +7,7 @@
     <param.summary>Polynomial class with Sturm algorithm</param.summary>
     <param.description>This toolbox store two classes: Poly and Sturm. Poly is a class implementing a Polynomial with some easy to use methods (summation, product, derivative...). Stum is a class implementing the Sturm algorithm for separation and computation of all the real roots of the polynomial in an interval.</param.description>
     <param.screenshot>${PROJECT_ROOT}/Charles_Sturm.jpeg</param.screenshot>
-    <param.version>0.2</param.version>
+    <param.version>0.3</param.version>
     <param.output>${PROJECT_ROOT}/Sturm.mltbx</param.output>
     <param.products.name />
     <param.products.id />

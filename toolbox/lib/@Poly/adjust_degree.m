@@ -5,7 +5,7 @@
 % p(x) = 1+x+0*x^2+x^3+0*x^4 of degree 4
 %
 % become
-% 
+%
 % p(x) = 1+x+0*x^2+x^3 of degree 3
 %
 function adjust_degree( self )
