@@ -43,8 +43,10 @@ function n_roots = refine_roots( self, tol )
       end
       if fa*fx < 0
         b = x; fb = fx; % interval [a,x]
-      else
+      elseif fb*fx < 0
         a = x; fa = fx; % interval [c,b]
+      else
+        break;
       end
     end
     self.m_roots(n) = x;
