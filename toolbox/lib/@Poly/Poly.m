@@ -87,7 +87,7 @@ classdef Poly < handle
     % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     function dp = eval_D( self, x )
       % Evaluate the derivative of polynomial p(x) at point(s) x
-      dp = self.m_coeffs(end)*ones(size(x));
+      dp = self.m_coeffs(end)*ones(size(x))*(self.m_order-1);
       for n=self.m_order-1:-1:2
         dp = dp.*x+self.m_coeffs(n)*(n-1);
       end
