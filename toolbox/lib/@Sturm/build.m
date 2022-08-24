@@ -4,9 +4,8 @@ function build( self, P )
   self.m_intervals = {};
   self.m_sturm     = {};
   self.m_sturm{1}  = P;
-  % if leasing coeff is 0 adjust degree
-  self.m_sturm{1}.adjust_degree();
-  self.m_sturm{2} = self.m_sturm{1}.derivative();
+  self.m_sturm{1}.adjust_degree(); % if leading coeff is 0 adjust degree
+  self.m_sturm{2}  = self.m_sturm{1}.derivative();
   ns = 2;
   % apply Euclide GCD algorithm
   while true

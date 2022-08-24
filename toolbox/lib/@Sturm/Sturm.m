@@ -5,7 +5,7 @@ classdef Sturm < handle
     m_a;
     m_b;
     m_roots;
-    m_max_iter;
+    m_solver;
   end
 
   methods
@@ -16,11 +16,19 @@ classdef Sturm < handle
       self.m_a         = 0;
       self.m_b         = 0;
       self.m_roots     = zeros(0,0);
-      self.m_max_iter  = 20;
+      self.m_solver    = Algo748();
     end
     % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     function delete( self )
     end
+    % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    %function set_max_iter( self, miter )
+    %  assert( ...
+    %    miter > 0 && floor(miter) == miter && miter < 1000000, ...
+    %    'miter must be a positive integer < 1000000' ...
+    %  );
+    %  self.m_max_iter = miter;
+    %end
     % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     function [a,b] = get_ab( self )
       % Return the interval [a,b] where real roots are searched
@@ -60,13 +68,10 @@ classdef Sturm < handle
     % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     build( self, poly );
     separate_roots( self, a, b );
-    refine_roots( self, tol );
+    refine_roots( self );
     [s,on_roots] = sign_variations( self, x );
     str = to_string( self );
+    print( self, check )
     % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    function print( self )
-      % Print the sturm sequence in a human readable way
-      fprintf('%s\n',self.to_string());
-    end
   end
 end

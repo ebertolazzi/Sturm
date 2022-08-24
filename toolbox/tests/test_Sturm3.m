@@ -17,12 +17,19 @@ P = Poly( [ ...
   -91691443933113974784, ...
   2.0953255012137562931e+20 ...
 ] );
-x_roots = P.real_roots_in_the_interval( 0, ell, 1e-20 )
+%P.adjust_degree
+%P.remove_zero
+
+x_roots = P.real_roots_in_the_interval( 0, ell )
 y_roots = P.eval( x_roots );
 y_roots
 
 S = Sturm();
 S.build(P);
+S.separate_roots( 0, ell );
+S.refine_roots();
+S.print(true);
+
 PP = S.get(1);
 z_roots = PP.eval( x_roots );
 

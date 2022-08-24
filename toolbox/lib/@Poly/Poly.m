@@ -117,9 +117,10 @@ classdef Poly < handle
     res = integral( self )
     res = sign_variations( self )
     adjust_degree( self )
+    nzero = remove_zero( self )
     [M,R] = divide( self, q )
     G = GCD( self, q )
-    roots = real_roots_in_the_interval( self, a, b, epsi )
+    roots = real_roots_in_the_interval( self, a, b )
     % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     mult_by_monomial( self, a, b ) % a * x + b
     P = to01( self, a, b )

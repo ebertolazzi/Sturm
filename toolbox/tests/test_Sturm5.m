@@ -5,12 +5,15 @@ clear all;
 close all;
 
 ell     = 0.15;
-CodeGen = [0 0 -0.005134583085657 0.211003985866756 -1.363267351305853 0 0 0 0]
+CodeGen = [0 0 -0.005134583085657 0.211003985866756 -1.363267351305853 0 0 0 0];
 
 % Apply Sturm
 P     = Poly( CodeGen );
-roots = P.real_roots_in_the_interval( 0, ell, 1e-10 );
-disp(roots);
+roots = P.real_roots_in_the_interval( 0, ell );
+
+for r=roots
+  fprintf('P(%g) = %g\n', r, P.eval(r) );
+end
 
 x = 0.0:0.001:ell;
 y = P.eval(x);

@@ -4,7 +4,7 @@ clc;
 clear all;
 close all;
 
-ell     = 0.11;
+ell     = 0.1100001;
 
 CodeGen1 = [ ...
     0.00000000000000e+000, ...
@@ -31,12 +31,16 @@ CodeGen0 = [ ...
 ];
 
 P = Poly(CodeGen0+CodeGen1);
-x_roots = P.real_roots_in_the_interval( 0, ell, 1e-20 )
+x_roots = P.real_roots_in_the_interval( 0, ell )
 y_roots = P.eval( x_roots );
 y_roots
 
 S = Sturm();
 S.build(P);
+S.separate_roots( 0, ell );
+S.refine_roots();
+S.print(true);
+
 PP = S.get(1);
 z_roots = PP.eval( x_roots );
 

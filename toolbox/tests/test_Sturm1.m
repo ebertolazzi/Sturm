@@ -17,7 +17,7 @@ line(xL, [0 0]);  %y-axis
 
 S.build( p );
 S.separate_roots( a, b );
-S.refine_roots( 1e-12 );
+S.refine_roots();
 
 hold on;
 for ipos=1:S.n_intervals()
@@ -26,4 +26,4 @@ for ipos=1:S.n_intervals()
 end
 hold off;
 
-S.print();
+S.print( true );

@@ -60,10 +60,8 @@ plot(x,z);
 title('Q01');
 
 S.separate_roots( 0, ell );
-S.print();
-S.refine_roots(1e-20);
-x_roots = S.roots()
-y_roots = P.eval(x_roots)
+S.refine_roots();
+S.print(true);
 
-x_roots = P.real_roots_in_the_interval( 0, ell, 1e-20 )
-y_roots = P.eval(x_roots)
+x_roots = P.real_roots_in_the_interval( 0, ell );
+x_roots - S.roots
