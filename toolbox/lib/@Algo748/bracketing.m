@@ -1,4 +1,21 @@
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+%-------------------------------------------------------+
+%                                                       |
+% Copyright (C) 2022                                    |
+%                                                       |
+%        , __                 , __                      |
+%       /|/  \               /|/  \                     |
+%        | __/ _   ,_         | __/ _   ,_              |
+%        |   \|/  /  |  |   | |   \|/  /  |  |   |      |
+%        |(__/|__/   |_/ \_/|/|(__/|__/   |_/ \_/|/     |
+%                          /|                   /|      |
+%                          \|                   \|      |
+%                                                       |
+%     Enrico Bertolazzi                                 |
+%     Dipartimento di Ingegneria Industriale            |
+%     Universita` degli Studi di Trento                 |
+%     email: enrico.bertolazzi@unitn.it                 |
+%                                                       |
+%-------------------------------------------------------+
 function [a,b,c,d,fa,fb,fc,fd] = bracketing( self, P, FP )
   % Given current enclosing interval [a,b] and a number c in (a,b):
   %

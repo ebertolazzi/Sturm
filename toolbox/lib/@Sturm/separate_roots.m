@@ -28,9 +28,15 @@ function n_roots = separate_roots( self, a, b )
   % search intervals
   i_pos = 1;
   n_seg = 1;
-  
+
   while i_pos <= n_roots
     I0 = self.m_intervals{i_pos};
+    if (I0.b-I0.a) < eps*max(abs(I0.a),abs(I0.b))
+      % intervallo troppo piccolo passo al successivo
+      i_pos   = i_pos + 1;
+      n_roots = n_roots - abs(I0.vb-I0.va)+1;
+      continue;
+    end
     % refine segment
     c = (I0.a+I0.b)/2;
     [vc,vroot] = self.sign_variations(c);
@@ -77,6 +83,7 @@ function n_roots = separate_roots( self, a, b )
       end
     end
   end
+  self.m_intervals = self.m_intervals(1:n_roots);
   % sort intervals
   [~, order]       = sort(squeeze([cell2mat(self.m_intervals).a]));
   self.m_intervals = self.m_intervals(order);

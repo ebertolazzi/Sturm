@@ -1,4 +1,4 @@
-classdef Poly < handle
+classdef Poly < matlab.mixin.Copyable
   %%
   % Class storing a polynomial
   %
@@ -9,6 +9,15 @@ classdef Poly < handle
   properties (SetAccess = private, Hidden = true)
     m_order;  % order of the polynomial
     m_coeffs; % coefficients of the polynomial
+  end
+
+  methods(Access = protected)
+    % Override copyElement method:
+    function obj = copyElement( self )
+      obj           = copyElement@matlab.mixin.Copyable(self);
+      obj.m_order   = self.m_order;
+      obj.m_coeffs  = self.m_coeffs;
+    end
   end
 
   methods
@@ -93,18 +102,9 @@ classdef Poly < handle
       end
     end
     % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    function purge( self, epsi )
-      % Set to 0 the coefficients of p(x) = sum p(i) * x^(i-1) such that |p(i)| < epsi
-      IDX = find( abs(self.m_coeffs) <= epsi );
-      self.m_coeffs(IDX) = 0;
-    end
+    purge( self, epsi )
     % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    function S = normalize( self )
-      % Scale polynomial p(x) = sum p(i) * x^(i-1) un such a way max |p(i)| = 1
-      % return in S the scaling value
-      S = max(max(abs(self.m_coeffs)));
-      if S > 0; self.m_coeffs = self.m_coeffs./S; end
-    end
+    S = normalize( self )
     % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     res = plus(self,b)
     res = minus(self,b)

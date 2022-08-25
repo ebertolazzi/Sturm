@@ -4,7 +4,7 @@ clc;
 clear all;
 close all;
 
-ell     = 0.1100001;
+ell = 0.1100001+0.01;
 
 CodeGen1 = [ ...
     0.00000000000000e+000, ...
@@ -31,15 +31,17 @@ CodeGen0 = [ ...
 ];
 
 P = Poly(CodeGen0+CodeGen1);
-x_roots = P.real_roots_in_the_interval( 0, ell )
-y_roots = P.eval( x_roots );
-y_roots
 
 S = Sturm();
+%P.normalize
 S.build(P);
 S.separate_roots( 0, ell );
 S.refine_roots();
 S.print(true);
+
+x_roots = P.real_roots_in_the_interval( 0, ell )
+y_roots = P.eval( x_roots );
+y_roots
 
 PP = S.get(1);
 z_roots = PP.eval( x_roots );
@@ -62,4 +64,7 @@ xlabel('x'); xlabel('y');
 xlim([0.0, ell]);
 plot(x_roots, z_roots, 'o','MarkerFaceColor','red', 'MarkerSize', 20.0);
 grid on; grid minor;
+
+P.eval(x_roots)
+PP.eval(x_roots)
 

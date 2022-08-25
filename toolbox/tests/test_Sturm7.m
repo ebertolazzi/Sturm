@@ -4,7 +4,7 @@ clc;
 clear all;
 close all;
 
-CodeGen = [1.001,2.001,3.001,4.001,5.001,6.1];
+CodeGen = [1,2,3,4,5,6]; %1.001,2.001,3.001,4.001,5.001,6.1];
 
 % Apply Sturm
 P     = Poly( CodeGen );

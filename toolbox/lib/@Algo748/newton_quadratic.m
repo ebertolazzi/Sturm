@@ -1,4 +1,21 @@
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+%-------------------------------------------------------+
+%                                                       |
+% Copyright (C) 2022                                    |
+%                                                       |
+%        , __                 , __                      |
+%       /|/  \               /|/  \                     |
+%        | __/ _   ,_         | __/ _   ,_              |
+%        |   \|/  /  |  |   | |   \|/  /  |  |   |      |
+%        |(__/|__/   |_/ \_/|/|(__/|__/   |_/ \_/|/     |
+%                          /|                   /|      |
+%                          \|                   \|      |
+%                                                       |
+%     Enrico Bertolazzi                                 |
+%     Dipartimento di Ingegneria Industriale            |
+%     Universita` degli Studi di Trento                 |
+%     email: enrico.bertolazzi@unitn.it                 |
+%                                                       |
+%-------------------------------------------------------+
 function res = newton_quadratic( ~, niter, P, FP )
   % Uses `niter` newton steps to approximate the zero in (a,b) of the
   % quadratic polynomial interpolating f(x) at a, b, and d.

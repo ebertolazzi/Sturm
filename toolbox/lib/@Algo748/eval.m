@@ -1,11 +1,28 @@
-% - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+%-------------------------------------------------------+
+%                                                       |
+% Copyright (C) 2022                                    |
+%                                                       |
+%        , __                 , __                      |
+%       /|/  \               /|/  \                     |
+%        | __/ _   ,_         | __/ _   ,_              |
+%        |   \|/  /  |  |   | |   \|/  /  |  |   |      |
+%        |(__/|__/   |_/ \_/|/|(__/|__/   |_/ \_/|/     |
+%                          /|                   /|      |
+%                          \|                   \|      |
+%                                                       |
+%     Enrico Bertolazzi                                 |
+%     Dipartimento di Ingegneria Industriale            |
+%     Universita` degli Studi di Trento                 |
+%     email: enrico.bertolazzi@unitn.it                 |
+%                                                       |
+%-------------------------------------------------------+
 function [sol,iter] = eval( self, a, b, fun )
-  self.m_num_fun_eval = 0;
-  self.m_fun          = fun;
-  iter                = 0;
+  self.m_num_fun_eval  = 0;
+  self.m_num_iter_done = 0;
+  self.m_fun           = fun;
   % check for trivial solution
-  fa = self.f_evaluate( a ); if fa == 0; sol = a; return; end
-  fb = self.f_evaluate( b ); if fb == 0; sol = b; return; end
+  fa = self.f_evaluate( a ); if fa == 0; sol = a; iter = 0; return; end
+  fb = self.f_evaluate( b ); if fb == 0; sol = b; iter = 0; return; end
   % check if solution can exists
   if fa*fb > 0
     iter = -1;
@@ -28,11 +45,12 @@ function [sol,iter] = eval( self, a, b, fun )
   e = NaN; fe = NaN; % Dumb values
   % Until f(left) or f(right) are infinite perform bisection
   while ~( isfinite(fa) && isfinite(fb) )
-    iter = iter+1;
-    c    = (a+b)/2;
-    fc   = self.f_evaluate( c );
+    self.m_num_iter_done = self.m_num_iter_done+1;
+    c  = (a+b)/2;
+    fc = self.f_evaluate( c );
     if fc == 0
-      sol = c;
+      sol  = c;
+      iter = self.m_num_iter_done;
       return;
     end
     if fa*fc < 0
@@ -50,6 +68,7 @@ function [sol,iter] = eval( self, a, b, fun )
       self.set_tolerance(a);
     end
     if (b-a) <= self.m_tolerance
+      iter = self.m_num_iter_done;
       return; % found solution
     end
   end
@@ -71,14 +90,15 @@ function [sol,iter] = eval( self, a, b, fun )
   %
   [a,b,c,d,fa,fb,fc,fd] = self.bracketing( [a,b,c], [fa,fb] );
   if fa == 0
-    sol = a;
+    iter = self.m_num_iter_done;
+    sol  = a;
     return;
   end
   % Iteration starts.
   % The enclosing interval before executing the iteration is recorded as [a0, b0].
   converged = false;
   while ~converged
-    iter = iter+1;
+    self.m_num_iter_done = self.m_num_iter_done+1;
     A0   = a;
     B0   = b;
     % Calculates the termination criterion.
@@ -182,7 +202,9 @@ function [sol,iter] = eval( self, a, b, fun )
   end
   % terminates the procedure and return the "root".
   sol = a;
-  if ~converged
-    iter = -iter;
+  if converged
+    iter = self.m_num_iter_done;
+  else
+    iter = -self.m_num_iter_done;
   end
 end

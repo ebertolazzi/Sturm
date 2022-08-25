@@ -10,12 +10,10 @@
 %
 function [Mpoly,Rpoly] = divide( self, QP )
 
-  epsi = 100*eps;
-
   P = self.m_coeffs;
   Q = QP.coeffs();
-  scaleP = max(max(abs(P))); if scaleP > 0; P = P./scaleP; end;
-  scaleQ = max(max(abs(P))); if scaleQ > 0; Q = Q./scaleQ; end;
+  scaleP = max(max(abs(P))); if scaleP > 0; P = P./scaleP; end
+  scaleQ = max(max(abs(P))); if scaleQ > 0; Q = Q./scaleQ; end
   %
   % P(x) = Q(x) * M(x) + R(x)
   %
@@ -42,6 +40,7 @@ function [Mpoly,Rpoly] = divide( self, QP )
   end
 
   % adjust degree or remainder
+  epsi   = eps^(3./4.)*max(1,max(max(abs(R))));
   IDX    = find( abs(R) <= epsi );
   R(IDX) = 0;
   while R_order > 0

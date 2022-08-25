@@ -34,10 +34,10 @@
 classdef Algo748 < matlab.mixin.Copyable
 
   properties (SetAccess = private, Hidden = true)
-    m_iter;
     m_mu;
     m_fun;
     m_num_fun_eval;
+    m_num_iter_done;
     m_tolerance;
   end
 
@@ -61,7 +61,7 @@ classdef Algo748 < matlab.mixin.Copyable
     function yes_no = all_different( ~, V )
       yes_no = false;
       for i=1:length(V)-1
-        for j=2:length(V)
+        for j=i+1:length(V)
           if V(i) == V(j)
             return;
           end
@@ -74,16 +74,21 @@ classdef Algo748 < matlab.mixin.Copyable
   methods
     % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     function self = Algo748()
-      self.m_iter         = 0;
-      self.m_num_fun_eval = 0;
-      self.m_mu           = 0.5;
-      self.m_tolerance    = 1e-8;
+      self.m_num_iter_done = 0;
+      self.m_num_fun_eval  = 0;
+      self.m_mu            = 0.5;
+      self.m_tolerance     = 1e-8;
     end
     % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     function res = num_fun_eval( self )
       res = self.m_num_fun_eval;
     end
     % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    function res = num_iter_done( self )
+      res = self.m_num_iter_done;
+    end
+    % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     [sol,iter] = eval( self, a, b, fun )
+    % - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   end
 end
