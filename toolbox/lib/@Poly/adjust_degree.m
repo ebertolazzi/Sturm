@@ -15,7 +15,7 @@ function adjust_degree( self )
   end
   if order < self.m_order
     if order > 0
-      self.m_coeffs = self.m_coeffs(1:order)
+      self.m_coeffs = self.m_coeffs(1:order);
     else
       self.m_coeffs = zeros(1,0);
     end
