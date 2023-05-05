@@ -9,14 +9,14 @@ function build( self, P )
   ns = 2;
   % apply Euclide GCD algorithm
   while true
-    [M,R] = self.m_sturm{ns-1}.divide( self.m_sturm{ns} );
+    [~,R] = self.m_sturm{ns-1}.divide( self.m_sturm{ns} );
     if R.order() <= 0; break; end
     ns = ns + 1; self.m_sturm{ns} = -R;
   end
   % divide by GCD
   g = self.m_sturm{ns};
   for i=1:ns-1
-    [M,R] = self.m_sturm{i}.divide( g );
+    [M,~] = self.m_sturm{i}.divide( g );
     M.normalize();
     self.m_sturm{i} = M;
   end
